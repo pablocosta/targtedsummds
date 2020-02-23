@@ -1,0 +1,9 @@
+/elmo/*
+/.vscode/*
+/__pycache__/*
+/corpus/*
+/*.csv
+/*.json
+
+
+
