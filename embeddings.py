@@ -22,7 +22,7 @@ df["y_vecors"] = df["y"].progress_apply(
 df.to_json("./distance_vectors.json")
 """
 
-df = pd.read_json("./distance_vectors.json")
+df = pd.read_json("./distance_vectors.json").sample(frac=0.3)
 
 list_df = alligned(df, cut_off=0.89)
 pd.concat(list_df).to_csv("./new_allignments.csv")

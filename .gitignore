@@ -4,6 +4,7 @@
 /corpus/*
 /*.csv
 /*.json
+/onmt/*
 
 
 
