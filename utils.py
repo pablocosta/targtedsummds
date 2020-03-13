@@ -5,7 +5,7 @@ import numpy as np
 from tqdm import tqdm as tqdm
 from collections import Counter
 from sklearn.metrics.pairwise import cosine_similarity
-from numba import jit, cuda
+from numba import jit, prange
 
 
 def get_sentece_vectors(sentence, model, doc_freqs=False):
@@ -32,11 +32,11 @@ def cos_sim(a, b):
 	return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 
-@jit(nopython=False)
+@jit(nopython=False, parallel=True)
 def do_similarities(x, y):
     result =  np.zeros(y.shape[0])
 
-    for ele in range(y.shape[0]):
+    for ele in prange(y.shape[0]):
         result[ele] = cos_sim(x[0], np.array(y[ele])[0])
     return result
 
